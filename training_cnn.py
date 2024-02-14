@@ -6,7 +6,7 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator   # type: ig
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense  # type: ignore
 
 
-# --- GENERAL CONFIGURATION ---
+# --- GENERAL CONFIGURATION ---    
 data_dict = pickle.load(open('./data.pickle', 'rb'))
 # print(data_dict)
 

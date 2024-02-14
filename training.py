@@ -7,7 +7,7 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences  # type: ignor
 
 
 # --- GENERAL CONFIGURATION ---
-data_dict = pickle.load(open('./data.pickle', 'rb'))
+data_dict = pickle.load(open('./data.pickle', 'rb'))     
 
 max_length = max(len(seq) for seq in data_dict['data'])
 data_padded = pad_sequences(data_dict['data'], maxlen=max_length, padding='post', truncating='post', dtype='float32')

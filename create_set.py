@@ -5,7 +5,7 @@ import numpy as np
 
 
 DATA_DIR = './data'  # Replace with the actual path to your skin condition images folder
-
+    
 
 # --- FLOW PROCESS ---
 data = []

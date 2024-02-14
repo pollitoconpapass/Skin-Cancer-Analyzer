@@ -8,7 +8,7 @@ app = Flask(__name__)
 model_dict = pickle.load(open('model.p', 'rb'))
 full_pipeline = model_dict['model']
 
-skin_labels_dict = {
+skin_labels_dict = {    
     'actinic keratosis': 'Actinic Keratosis', 'basal cell carcinoma': 'Basal Cell Carcinoma', 
     'dermatofibroma': 'Dermatofibroma', 'melanoma': 'Melanoma', 'nevus': 'Nevus',
     'pigmented benign keratosis': 'Pigmented Benign Keratosis', 'seborrheic keratosis': 'Seborrheic Keratosis',
