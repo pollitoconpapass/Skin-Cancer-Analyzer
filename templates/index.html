@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Condition Classifier</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-size: 48;
+            text-align: center;
+            color: #fafafa;
+            background-color: #222222;
+        }
+        .image-preview {
+            margin-top: 20px;
+        }
+    </style>
+
+    <script>
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                var output = document.getElementById('image-preview');
+                output.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+</head>
+
+
+<body>
+    <h1>Skin Condition Classifier</h1>
+    <br>
+    <p>This is an app that can diagnose some Skin Cancer Conditions based on the images you upload.</p>
+    <h2 style="color: rgb(238, 231, 13)">__________________________________________________________________________________________________</h2>
+    <br>
+    <br>
+
+    <form action="/predict" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*"  onchange="previewImage(event)">
+        <br>
+        
+        <div class="image-preview">
+            <img id="image-preview" src="" alt="Selected Image" style="max-width: 400px; max-height: 400px;">
+        </div>
+        <br>
+        <br>
+        <input type="submit" value="Upload" style="background-color: #033b27; 
+        border-color: #033b27; color:aliceblue; width: 95px; height: 40px; border-radius: 20px;">
+    </form>
+    
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <p style="color: #9f8f9f"> ⚠️ This app should not be taken seriously by random people. It is a demo app for educational purposes only.</p>
+    
+</body>
+</html>

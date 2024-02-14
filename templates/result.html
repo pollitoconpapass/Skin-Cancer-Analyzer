@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            font-size: 48;
+            text-align: center;
+            color: #fafafa;
+            background-color: #222222;
+        }
+    </style>
+</head>
+<body>
+    <h1>Result</h1>
+    {% if is_cancer %}
+    <div style="background-color: red; color:#fafafa">
+    {% else %}
+    <div style="background-color: green; color: #fafafa">
+    {% endif %}
+        <p class="text-align: center" style="font: 1em sans-serif;">The predicted skin condition is: {{ predicted_condition }}{% if is_cancer %} (CANCER){% else %} (NOT CANCER){% endif %}</p>
+    </div>
+</body>
+</html>
