@@ -23,3 +23,8 @@
 6. Start the frontend
 
         streamlit run app.py
+
+
+### Sneek Peek
+![alt text](imgs/sneek_peek.png)
+
