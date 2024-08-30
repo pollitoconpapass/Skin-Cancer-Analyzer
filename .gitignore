@@ -1,0 +1,7 @@
+data
+data.pickle
+model_with_vgg16.p
+model.p
+__pycache__
+venv
+.DS_Store

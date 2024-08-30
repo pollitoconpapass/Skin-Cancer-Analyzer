@@ -1,10 +1,9 @@
 import pickle
 import numpy as np
+import streamlit as st
 from PIL import Image
-from flask import Flask, render_template, request
 
 
-app = Flask(__name__)
 model_dict = pickle.load(open('model.p', 'rb'))
 full_pipeline = model_dict['model']
 
@@ -16,29 +15,21 @@ skin_labels_dict = {
 }
 # IS CANCER: Basal Cell Carcinoma, Squamous Cell Carcinoma, Melanoma
 
+st.title('Skin Condition Classifier')
+file = st.file_uploader('Upload Image', type=['jpg', 'png'])
 
-@app.route('/')
-def index():
-    return render_template('index.html')
+if file:
+    img = Image.open(file)
+    img = img.resize((224, 224))
+    img_array = np.array(img)
 
+    prediction = full_pipeline.predict(img_array.reshape(1, -1))
+    predicted_condition = skin_labels_dict.get(prediction[0], 'Unknown Condition')
+    is_cancer = predicted_condition in ['Basal Cell Carcinoma', 'Squamous Cell Carcinoma', 'Melanoma']
 
-@app.route('/predict', methods=['POST'])
-def predict():
-    if request.method == 'POST':
-        file = request.files['file']
-        if file:
-            img = Image.open(file)
-            img = img.resize((224, 224))
-            img_array = np.array(img)
-
-            prediction = full_pipeline.predict(img_array.reshape(1, -1))
-            predicted_condition = skin_labels_dict.get(prediction[0], 'Unknown Condition')
-            is_cancer = predicted_condition in ['Basal Cell Carcinoma', 'Squamous Cell Carcinoma', 'Melanoma']
-
-            return render_template('result.html', predicted_condition=predicted_condition, is_cancer=is_cancer)
-        
-    return 'Error'
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
+    st.image(img, use_column_width=True)
+    st.write("\nPREDICTED CONDITION:")
+    if is_cancer:
+        st.warning(f'{predicted_condition} - CANCER DETECTED')
+    else:
+        st.success(f'{predicted_condition} - NO CANCER DETECTED')
